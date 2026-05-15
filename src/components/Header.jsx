@@ -1,4 +1,5 @@
 import MenuCliente from "./MenuCliente.jsx";
+import Tag from "./Tag.jsx";
 
 
 function Header(props){

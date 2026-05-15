@@ -1,9 +1,10 @@
+import MenuCliente from "./MenuCliente.jsx";
 
 
 function Header(props){
     return(
-        <header className={props.className}>
-            {props.children}
+        <header className="w-full">
+            <MenuCliente/>
         </header>
     )
 }

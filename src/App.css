@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primárias e Escuras */
+  --color-coffee-primaria: #3B2418;
+  --color-coffee-deep-sombras: #2A170D;
+
+  /* Acentos */
+  --color-amber-acento: #C68A4C;
+  --color-amber-soft-secundario: #E2B47A;
+
+  /* Fundos */
+  --color-paper-fundo-principal: #FBF6EC;
+  --color-sand-fundo-neutro: #F5EBD9;
+  --color-cream-fundo-alternativo: #EFE4D2;
+
+  /* Texto e Elementos */
+  --color-ink-texto: #1B120B;
+  --color-line-bordas: #E2D3BB;
+}

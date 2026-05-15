@@ -1,5 +1,6 @@
 import Button from "./Button.jsx";
 import Link from "./Link.jsx";
+import Tag from "./Tag.jsx";
 
 function MenuCliente(props){
     const isAutenticado = true;

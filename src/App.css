@@ -11,7 +11,7 @@
 
   /* Fundos */
   --color-paper-fundo-principal: #F8F4EF;
-  --color-sand-fundo-secundario: #fefefef0;
+  --color-sand-fundo-secundario: rgba(243, 241, 241, 0.94);
   --color-cream-fundo-alternativo: #EFE4D2;
 
   /* Texto e Elementos */

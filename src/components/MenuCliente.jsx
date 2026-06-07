@@ -14,10 +14,10 @@ function MenuCliente(props){
                 <div>
                     <ul className="flex justify-center space-x-8 cursor-pointer">
                         <li>
-                            <Link>Inicio</Link>
+                            <Link to="/">Inicio</Link>
                         </li>
                         <li>
-                            <Link>Produtos</Link>
+                            <Link to"/produtos">Produtos</Link>
                         </li>
                     </ul>
 
@@ -26,9 +26,6 @@ function MenuCliente(props){
                     <Button className="
                     bg-coffee-primaria
                     text-white
-                    py-1 px-5
-                    rounded-3xl
-                    cursor-pointer
 
                     transition-all
                     duration-300

@@ -1,11 +1,8 @@
-
-import Header from "./components/Header.jsx";
-import Home from "./pages/Home.jsx";
+import {RouterProvider} from "react-router-dom";
+import router from "./router.jsx"
 
 function App() {
-    return (
-        <Home/>
-    )
+    return (<RouterProvider router={router}/>)
 }
 
 export default App

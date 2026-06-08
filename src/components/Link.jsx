@@ -1,8 +1,9 @@
 import {NavLink} from "react-router-dom";
 
-function Link({children, rota}) {
+function Link({ children, to, className='', ...props }) {
     return (
-        <NavLink to={rota} className="
+        <NavLink to={to} {...props} className={
+            `
             inline-block
             cursor-pointer
 
@@ -12,7 +13,8 @@ function Link({children, rota}) {
             
 
             hover:-translate-y-0.5
-        ">
+            ${className}`
+        }>
             {children}
         </NavLink>
     );

@@ -1,14 +1,13 @@
-import Button from "./Button.jsx";
-import Link from "./Link.jsx";
-import Tag from "./Tag.jsx";
 
-function MenuCliente(props){
-    const isAutenticado = true;
+import Link from "./Link.jsx";
+
+
+function MenuCliente(){
     return(
         <div className="bg-sand-fundo-secundario flex justify-center shadow-lg">
             <nav className="container mx-auto py-4 flex justify-between items-center text-coffee-primaria font-medium">
                 <div>
-                    <Link>IF-Retail</Link>
+                    <Link to="/">IF-Retail</Link>
                 </div>
 
                 <div>
@@ -17,25 +16,20 @@ function MenuCliente(props){
                             <Link to="/">Inicio</Link>
                         </li>
                         <li>
-                            <Link to"/produtos">Produtos</Link>
+                            <Link to="/produtos">Produtos</Link>
                         </li>
                     </ul>
 
                 </div>
                 <div>
-                    <Button className="
+                    <Link to="/login" className="py-1 px-5 rounded-3xl
                     bg-coffee-primaria
-                    text-white
-
-                    transition-all
-                    duration-300
-                    ease-in-out
-
-                    hover:-translate-y-0.5
+                    text-cream-fundo-alternativo
                     hover:shadow-lg"
                     >
+
                         Entrar
-                    </Button>
+                    </Link>
                 </div>
 
             </nav>

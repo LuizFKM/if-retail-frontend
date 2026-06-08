@@ -7,12 +7,12 @@ function CarrosselProdutos() {
 
     // Dados fictícios dos seus mini cards
     const produtos = [
-        { id: 1, title: "Tênis Running Sport", price: 299.90, image: "https://placehold.co/300" },
-        { id: 2, title: "Camiseta Algodão Egípcio", price: 89.90, image: "https://placehold.co/400" },
-        { id: 3, title: "Calça Moletom Streetwear", price: 149.00, image: "https://placehold.co/800" },
-        { id: 4, title: "Boné Aba Curva Premium", price: 59.90, image: "https://placehold.co/200" },
-        { id: 5, title: "Meias Performance (Par)", price: 19.90, image: "https://placehold.co/200" },
-        { id: 6, title: "Jaqueta Corta Vento", price: 219.90, image: "https://placehold.co/200" },
+        { id: 1, title: "Tênis Running Sport", price: 299.90, image: "https://placehold.co/260" },
+        { id: 2, title: "Camiseta Algodão Egípcio", price: 89.90, image: "https://placehold.co/260" },
+        { id: 3, title: "Calça Moletom Streetwear", price: 149.00, image: "https://placehold.co/260" },
+        { id: 4, title: "Boné Aba Curva Premium", price: 59.90, image: "https://placehold.co/260" },
+        { id: 5, title: "Meias Performance (Par)", price: 19.90, image: "https://placehold.co/260" },
+        { id: 6, title: "Jaqueta Corta Vento", price: 219.90, image: "https://placehold.co/260" },
     ];
 
     // Função para rolar o carrossel para a esquerda ou direita

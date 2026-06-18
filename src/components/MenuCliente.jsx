@@ -22,13 +22,12 @@ function MenuCliente(){
 
                 </div>
                 <div>
-                    <Link to="/login" className="py-1 px-5 rounded-3xl
+                    <Link to="/painel" className="py-1 px-5 rounded-3xl
                     bg-coffee-primaria
                     text-cream-fundo-alternativo
                     hover:shadow-lg"
                     >
-
-                        Entrar
+                        Painel Admin
                     </Link>
                 </div>
 

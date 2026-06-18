@@ -3,7 +3,7 @@ import Button from "./Button.jsx";
 
 import CarrosselProdutos from "./CarrosselProdutos.jsx";
 
-function Hero(){
+function Hero({produtos}){
     return(
         <section className="bg-cream-fundo-alternativo w-full min-h-1/2 py-15 px-50">
             <div className="grid grid-cols-2 items-center gap-[60px]">
@@ -19,7 +19,7 @@ function Hero(){
                     </div>
                 </div>
                 <div>
-                    <CarrosselProdutos/>
+                    <CarrosselProdutos produtos={produtos}/>
                 </div>
             </div>
         </section>

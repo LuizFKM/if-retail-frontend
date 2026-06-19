@@ -7,11 +7,15 @@ const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' 
 function ListaProdutos() {
   const [produtos, setProdutos] = useState([])
   const [carregando, setCarregando] = useState(true)
+  const [pagina, setPagina] = useState(0)
+  const [totalPaginas, setTotalPaginas] = useState(1)
 
-  async function carregar() {
+  async function carregar(p = 0) {
+    setCarregando(true)
     try {
-      const data = await produtoService.listarTodos()
-      setProdutos(data)
+      const data = await produtoService.listarTodos(p, 10)
+      setProdutos(data.content ?? data)
+      setTotalPaginas(data.totalPages ?? 1)
     } catch {
       alert("Erro ao carregar produtos")
     } finally {
@@ -23,13 +27,13 @@ function ListaProdutos() {
     if (!confirm("Remover este produto?")) return
     try {
       await produtoService.remover(id)
-      setProdutos(prev => prev.filter(p => p.id !== id))
+      carregar(pagina)
     } catch {
       alert("Erro ao remover produto")
     }
   }
 
-  useEffect(() => { carregar() }, [])
+  useEffect(() => { carregar(pagina) }, [pagina])
 
   return (
     <>
@@ -102,6 +106,26 @@ function ListaProdutos() {
               )}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {totalPaginas > 1 && (
+        <div className="flex items-center justify-center gap-3 mt-6">
+          <button
+            onClick={() => setPagina(p => Math.max(0, p - 1))}
+            disabled={pagina === 0}
+            className="px-4 py-2 rounded border border-line-bordas text-coffee-primaria text-sm hover:bg-cream-fundo-alternativo disabled:opacity-40 cursor-pointer"
+          >
+            Anterior
+          </button>
+          <span className="text-sm text-ink-texto">{pagina + 1} / {totalPaginas}</span>
+          <button
+            onClick={() => setPagina(p => Math.min(totalPaginas - 1, p + 1))}
+            disabled={pagina >= totalPaginas - 1}
+            className="px-4 py-2 rounded border border-line-bordas text-coffee-primaria text-sm hover:bg-cream-fundo-alternativo disabled:opacity-40 cursor-pointer"
+          >
+            Próxima
+          </button>
         </div>
       )}
     </>

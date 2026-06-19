@@ -35,10 +35,8 @@ function CarrosselProdutos({ produtos = [] }) {
                 {produtos.map((produto) => (
                     <div key={produto.id} className="snap-center shrink-0 w-[85%] sm:w-[320px]">
                         <MiniCard
-                            imageSrc={produto.urlFotoProduto}
-                            title={produto.descricao}
-                            price={produto.precoUnitario}
-
+                            produto={produto}
+                            showFavoritar
                             className="h-full"
                         />
                     </div>

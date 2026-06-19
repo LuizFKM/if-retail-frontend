@@ -11,7 +11,14 @@ const clienteService = {
     if (imagem) formData.append("imagem", imagem)
     return (await api.put(`/clientes/${id}`, formData)).data
   },
+  uploadFoto: async (id, imagem) => {
+    const formData = new FormData()
+    formData.append("imagem", imagem)
+    return (await api.post(`/clientes/${id}/imagem`, formData)).data
+  },
   remover: async (id) => (await api.delete(`/clientes/${id}`)).data,
+  adicionarFavorito: async (clienteId, produtoId) => (await api.post(`/clientes/${clienteId}/favoritos/${produtoId}`)).data,
+  removerFavorito: async (clienteId, produtoId) => (await api.delete(`/clientes/${clienteId}/favoritos/${produtoId}`)).data,
 }
 
 export default clienteService

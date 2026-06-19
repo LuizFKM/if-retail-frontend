@@ -23,10 +23,8 @@ function Destaques({ produtos = [] }) {
                     {produtosEmDestaque.map((produto) => (
                         <div key={produto.id} className="w-full max-w-sm flex justify-center">
                             <MiniCard
-                                imageSrc={produto.urlFotoProduto}
-                                title={produto.descricao}
-                                price={produto.precoUnitario}
-                                // flex-col garante que a imagem fique em cima e o texto embaixo no card
+                                produto={produto}
+                                showFavoritar
                                 className="flex flex-col w-full"
                             />
                         </div>

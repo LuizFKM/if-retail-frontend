@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 
 // Aviso: o nome do arquivo "AdminSIdebar.jsx" tem um typo (I maiúsculo no meio).
 // Não renomear para não quebrar o import em PainelAdmin.jsx.
 function AdminSidebar() {
+  const navigate = useNavigate()
   const linkClass = ({ isActive }) =>
     `flex items-center px-4 py-3 rounded-md text-sm font-medium transition-all ${
       isActive
@@ -43,7 +44,10 @@ function AdminSidebar() {
       </nav>
 
       <div className="p-4 border-t border-amber-soft-secundario/30">
-        <button className="w-full flex items-center justify-center px-4 py-2 border border-coffee-deep-sombras text-coffee-primaria rounded-md hover:bg-coffee-primaria hover:text-cream-fundo-alternativo transition-colors text-sm font-medium cursor-pointer">
+        <button
+          onClick={() => navigate("/")}
+          className="w-full flex items-center justify-center px-4 py-2 border border-coffee-primaria text-coffee-primaria rounded-md hover:bg-coffee-primaria hover:text-cream-fundo-alternativo transition-colors text-sm font-medium cursor-pointer"
+        >
           Sair do Painel
         </button>
       </div>

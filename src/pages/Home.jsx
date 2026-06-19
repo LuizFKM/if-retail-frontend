@@ -11,8 +11,7 @@ function Home(){
     async function listarProdutos(){
         try{
             const data = await produtoService.listarTodos()
-            console.log(data)
-            setProdutos(data)
+            setProdutos(Array.isArray(data) ? data : (data.content ?? []))
         }catch(e){
             console.log(e)
             alert("Erro ao listar produtos")

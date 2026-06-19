@@ -4,20 +4,22 @@ import Footer from "../components/Footer.jsx"
 import MiniCard from "../components/MiniCard.jsx"
 import produtoService from "../services/produtoService.js"
 
-// AVISO: os botões "Adicionar ao carrinho" e "Favoritar" são visuais (placeholders).
-// O back-end ainda não expõe endpoints de carrinho/favoritos.
-// Para implementar de verdade, avise para criarmos o slice Redux e os endpoints correspondentes.
-
 function Produtos() {
   const [produtos, setProdutos] = useState([])
   const [carregando, setCarregando] = useState(true)
+  const [pagina, setPagina] = useState(0)
+  const [totalPaginas, setTotalPaginas] = useState(1)
 
   useEffect(() => {
-    produtoService.listarTodos()
-      .then(setProdutos)
+    setCarregando(true)
+    produtoService.listarTodos(pagina, 12)
+      .then(data => {
+        setProdutos(data.content ?? data)
+        setTotalPaginas(data.totalPages ?? 1)
+      })
       .catch(() => alert("Erro ao carregar produtos"))
       .finally(() => setCarregando(false))
-  }, [])
+  }, [pagina])
 
   return (
     <div className="min-h-screen bg-paper-fundo-principal flex flex-col">
@@ -37,19 +39,40 @@ function Produtos() {
               Nenhum produto disponível no momento.
             </p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {produtos.map(produto => (
-                <MiniCard
-                  key={produto.id}
-                  imageSrc={produto.urlFotoProduto}
-                  title={produto.descricao}
-                  price={produto.precoUnitario}
-                  estoque={produto.quantidadeEmEstoque}
-                  showFavoritar
-                  className="flex flex-col w-full"
-                />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {produtos.map(produto => (
+                  <MiniCard
+                    key={produto.id}
+                    produto={produto}
+                    showFavoritar
+                    className="flex flex-col w-full"
+                  />
+                ))}
+              </div>
+
+              {totalPaginas > 1 && (
+                <div className="flex items-center justify-center gap-3 mt-10">
+                  <button
+                    onClick={() => setPagina(p => Math.max(0, p - 1))}
+                    disabled={pagina === 0}
+                    className="px-4 py-2 rounded-md border border-line-bordas text-coffee-primaria hover:bg-cream-fundo-alternativo transition-colors disabled:opacity-40 cursor-pointer"
+                  >
+                    Anterior
+                  </button>
+                  <span className="text-ink-texto text-sm">
+                    Página {pagina + 1} de {totalPaginas}
+                  </span>
+                  <button
+                    onClick={() => setPagina(p => Math.min(totalPaginas - 1, p + 1))}
+                    disabled={pagina >= totalPaginas - 1}
+                    className="px-4 py-2 rounded-md border border-line-bordas text-coffee-primaria hover:bg-cream-fundo-alternativo transition-colors disabled:opacity-40 cursor-pointer"
+                  >
+                    Próxima
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </main>

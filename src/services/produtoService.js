@@ -1,7 +1,8 @@
 import api from './api'
 
 const produtoService = {
-  listarTodos: async () => (await api.get("/produtos")).data,
+  listarTodos: async (page = 0, size = 12) =>
+    (await api.get(`/produtos?page=${page}&size=${size}&sort=id`)).data,
   buscarId:    async (id) => (await api.get(`/produtos/${id}`)).data,
   cadastrar:   async (produto) => (await api.post("/produtos", produto)).data,
   atualizar:   async (id, produto) => (await api.put(`/produtos/${id}`, produto)).data,

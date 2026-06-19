@@ -20,6 +20,7 @@ function CadastroCliente() {
       const payload = {
         name: data.name,
         cpf: data.cpf,
+        email: data.email,         // User.email — usado no login
         password: data.password,
         role: "CLIENTE",
         urlFotoPerfil: "",
@@ -35,13 +36,13 @@ function CadastroCliente() {
         },
         contatos: [{
           telefone: data.contatos?.[0]?.telefone || "",
-          email: data.contatos?.[0]?.email || "",
+          email: data.email,       // replica o e-mail no contato também
           whatsapp: data.contatos?.[0]?.whatsapp || "",
         }],
       }
-      await clienteService.cadastrar(payload)
-      alert("Cadastro realizado com sucesso!")
-      navigate("/login")
+      const resultado = await clienteService.cadastrar(payload)
+      localStorage.setItem("clienteId", String(resultado.id))
+      navigate("/perfil")
     } catch {
       alert("Erro ao realizar cadastro. Verifique os dados e tente novamente.")
     } finally {
@@ -81,6 +82,22 @@ function CadastroCliente() {
                 />
                 {errors.name && (
                   <span className="text-red-500 text-xs">{errors.name.message}</span>
+                )}
+              </div>
+
+              <div>
+                <label className={labelClass}>E-mail *</label>
+                <input
+                  type="email"
+                  className={inputClass}
+                  placeholder="seu@email.com"
+                  {...register("email", {
+                    required: "E-mail é obrigatório",
+                    pattern: { value: /^\S+@\S+\.\S+$/, message: "E-mail inválido" },
+                  })}
+                />
+                {errors.email && (
+                  <span className="text-red-500 text-xs">{errors.email.message}</span>
                 )}
               </div>
 
@@ -194,22 +211,13 @@ function CadastroCliente() {
             <legend className="px-2 text-sm font-semibold text-coffee-primaria">
               Contato
             </legend>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
               <div>
                 <label className={labelClass}>Telefone</label>
                 <input
                   className={inputClass}
                   placeholder="(00) 0000-0000"
                   {...register("contatos.0.telefone")}
-                />
-              </div>
-              <div>
-                <label className={labelClass}>E-mail</label>
-                <input
-                  type="email"
-                  className={inputClass}
-                  placeholder="seu@email.com"
-                  {...register("contatos.0.email")}
                 />
               </div>
               <div>
